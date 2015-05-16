@@ -17,7 +17,15 @@ else
 
 	else
 
+		echo "Installing Cmake..."
+
 		sudo pacman --noconfirm -S cmake
+
+		sleep 2
+
+		echo "Configuring YouCompleteMe"
+
+		"$z"/install.sh --clang-completer
 
 	fi
 
