@@ -5,5 +5,5 @@
     ~/.vimrc: vimrc
 
 - shell:
-  - [install_fonts.sh, Installing fonts]
+  - [./install_fonts.sh, Installing fonts]
   - [git submodule update --init --recursive, Installing submodules]

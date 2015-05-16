@@ -1,20 +1,30 @@
 #!/bin/bash
 dist=`gawk -F= '/^NAME/{print $2}' /etc/os-release | sed 's/"//g'`
+fontDir="$HOME/.fonts/patched-fonts"
 
 if [ "$dist" == "Arch Linux" ]; then
+    set -e
 	echo "Installing subversion"
 
 	#Install subversion
-	pacman --noconfirm -S subversion
+    sudo pacman --noconfirm -S subversion
+
 
 	#Download fonts
-	echo "Downloading fonts"
-	svn export https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts
 
+    if [ -d "$fontDir" ]; then
+        echo "Fonts already installed in ~/.fonts/patched-fonts"
+        exit 0
+    else
+        echo "Installing fonts"
+	    svn export --force https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts
+    fi
+
+cd "$fontDir" && mkfontscale && mkfontdir
 	#refresh fonts
 	echo "Refreshing font cache"
-	xset +fp $HOME/.fonts
+	xset +fp $HOME/.fonts/patched-fonts
 	xset fp rehash
 else
-	echo "Just install these fonts manually, it's not that hard"
+	echo "Just install the fonts manually."
 fi
