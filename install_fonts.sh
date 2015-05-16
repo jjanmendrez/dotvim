@@ -18,7 +18,7 @@ if [ "$dist" == "Arch Linux" ]; then
 		exit 0
 	else
 		echo "Installing fonts"
-		/usr/bin/svn export --force https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts 2>/dev/null &
+		/usr/bin/svn export https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts 2>/dev/null &
 
 		pid=$! # Process Id of the previous running command
 		spin='-\|/'

@@ -82,3 +82,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vim/bundle/pathogen"]
+	path = vim/bundle/pathogen
+	url = https://github.com/tpope/vim-pathogen
