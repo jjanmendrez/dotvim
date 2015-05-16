@@ -1,5 +1,5 @@
 #!/bin/bash
-dist=`gawk -F= '/^NAME/{print $2}' /etc/os-release | sed 's/"//g'`
+dist=$(gawk -F= '/^NAME/{print $2}' /etc/os-release | sed 's/"//g')
 fontDir="$HOME/.fonts/patched-fonts"
 
 if [ "$dist" == "Arch Linux" ]; then
@@ -18,13 +18,12 @@ if [ "$dist" == "Arch Linux" ]; then
     else
         echo "Installing fonts"
 	    svn export --force https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts
-    fi
-
-cd "$fontDir" && mkfontscale && mkfontdir
+	cd "$fontDir" && mkfontscale && mkfontdir
 	#refresh fonts
 	echo "Refreshing font cache"
-	xset +fp $HOME/.fonts/patched-fonts
+	xset +fp "$fontDir"
 	xset fp rehash
+    fi
 else
 	echo "Just install the fonts manually."
 fi
