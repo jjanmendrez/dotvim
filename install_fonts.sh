@@ -18,19 +18,7 @@ if [ "$dist" == "Arch Linux" ]; then
 		exit 0
 	else
 		echo "Installing fonts"
-		/usr/bin/svn export https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts 2>/dev/null &
-
-		pid=$! # Process Id of the previous running command
-		spin='-\|/'
-		i=0
-		while kill -0 $pid 2>/dev/null
-		do
-			i=$(( (i+1) %4 ))
-			printf "\r${spin:$i:1}"
-			sleep .1
-		done
-
-		sleep 2
+		svn export https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts
 
 		echo "Updating fontconfig font cache."
 
