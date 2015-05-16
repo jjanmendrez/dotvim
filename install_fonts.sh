@@ -19,10 +19,8 @@ if [ "$dist" == "Arch Linux" ]; then
 	else
 		echo "Installing fonts"
 		svn export --force https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts
-		mkfontscale "$fontDir"*/
-	      	mkfontdir "$fontDir"*/
 		#refresh fonts
-		sleep 1
+		sleep 5
 		echo "Refreshing font cache"
 		xset +fp "$fontDir"
 		xset fp rehash
