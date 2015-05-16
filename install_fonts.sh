@@ -6,9 +6,9 @@ if [ "$dist" == "Arch Linux" ]; then
 	set -e
 	#Install subversion
 	if [ -x /usr/bin/svn ]; then
-		echo "subversion is already installed."
+		echo "Subversion is already installed."
 	else
-		echo "Installing subversion"
+		echo "Installing Subversion"
 		sudo pacman --noconfirm -S subversion
 	fi
 
@@ -19,12 +19,14 @@ if [ "$dist" == "Arch Linux" ]; then
 	else
 		echo "Installing fonts"
 		svn export --force https://github.com/ryanoasis/nerd-filetype-glyphs-fonts-patcher/trunk/patched-fonts ~/.fonts/patched-fonts
-		cd "$fontDir" && mkfontscale && mkfontdir
+		mkfontscale "$fontDir"*/
+	      	mkfontdir "$fontDir"*/
 		#refresh fonts
 		sleep 1
 		echo "Refreshing font cache"
 		xset +fp "$fontDir"
 		xset fp rehash
+		fc-cache -vf
 		sleep 5
 	fi
 else
